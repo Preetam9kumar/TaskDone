@@ -1,2 +1,2 @@
 # TaskDone
-TaskDone is a simple yet efficient task management to-do list application designed to help users organize and track their daily tasks effortlessly. Built with a responsive and user-friendly interface, the application allows users to create, update, and delete tasks with ease.
+TaskDone is a comprehensive task management application that enables users to efficiently organize, track, and manage their tasks. Featuring secure user authentication and a user-friendly interface, TaskDone allows users to register, log in, create, edit, update, and delete tasks while tracking progress through task statuses like To-Do, In-Process, and Done.
