@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <title>Sign Up</title>
+    <style>
+        .bg {
+            background-image: linear-gradient(1deg, rgba(250, 102, 48, 0.75), rgba(8, 83, 156, 0.75)), url(/task-bg3.jpg);
+        }
+
+        html {
+            height: 100vh;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: #a4a8b8f2;
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <div class="container-fluid p-0 m-0 w-100">
+        <header>
+            <div
+                class="d-flex px-5 mt-3 mb-4 pb-3 justify-content-between align-items-center border-3 border-bottom border-primary">
+                <div class="logo shadow">
+                    <a href="#" class="navbar-brand">Task<span class="fw-bold text-danger">Done</span></a>
+                </div>
+                <div>
+                    <a href="./hom.html"> <button
+                            class="btn btn-sm btn-outline-info rounded-pill px-4 py-2 fs-5">Home</button></a>
+                </div>
+            </div>
+        </header>
+        <div class="container bg shadow-lg align-items-center w-50 p-5  border border-5 border-primary bg-secondary"
+            style="border-radius:30px;">
+            <form action="" method="post" id="myform">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control rounded-pill" placeholder="First name"
+                            aria-label="First name" name="f_name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control rounded-pill" placeholder="Last name"
+                            aria-label="Last name" name="l_name">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <input type="email" class="form-control rounded-pill" placeholder="example@gmail.com"
+                            aria-label="mail" name="email">
+                    </div>
+                    <div class="col">
+                        <input type="tel" class="form-control rounded-pill" placeholder="Enter Mobile No."
+                            aria-label="contact" name="contact">
+                    </div>
+                </div>
+                <div class="row  mt-4">
+                    <div class="col">
+                        <input type="password" class="form-control rounded-pill" placeholder="Enter Password . . ."
+                            aria-label="pswrd1" name="pswrd1">
+                    </div>
+                    <div class="col">
+                        <input type="password" class="form-control rounded-pill" placeholder="Confirm Password"
+                            aria-label="pswrd2" name="pswrd2">
+                    </div>
+                </div>
+                <div class="row  mt-5 ">
+                    <div class="col d-flex flex-column align-items-center">
+                        <input type="submit" onclick="signup()" value="Sign Up"
+                            class="btn btn-info rounded-pill  px-5 py-2" name="sign_up">
+                        <p class="fw-bold disable mt-5" style="color: white;">OR</p>
+                    </div>
+                </div>
+                <div class="row  mt-2">
+                    <p class="text-primary mb-2 fw-medium">Do you have already an accout ? </p>
+                    <div class="col d-flex flex-column align-items-center">
+                        <a href="./login.html" class="btn btn-info rounded-pill  px-5 py-2">Log In</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer class="bg-dark p-1 text-info text-align-center mt-5">
+            <div class="row p-4 align-items-around">
+                <p style="color: white;">All rights are reserved by @ taskDon.org</p>
+                <h1>help center</h1>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    function signup() {
+        const form = document.querySelector('form'); // Select the form element
+
+        // Create a FormData object from the form
+        const formData = new FormData(form);
+
+        // Check if any required fields are empty (you can add more checks as needed)
+        if (!formData.get('f_name') || !formData.get('l_name') || !formData.get('email') || !formData.get('contact') || !formData.get('pswrd1') || !formData.get('pswrd2')) {
+            alert("Please fill all required fields correctly");
+            return;
+        }
+
+        if (confirm("Do you want to Signup ?")) {
+            formData.append('request', 'sign_up');
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    alert(" You Are Welcome !");
+                    return;
+                }
+            }
+
+            xhttp.open("POST", "serverDB_logics.php");
+            xhttp.send(formData);
+        }
+    }
+</script>
+
+</html>

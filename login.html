@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <title>Login</title>
+    <style>
+        .bg {
+            background-image: linear-gradient(1deg, rgba(250, 102, 48, 0.75), rgba(8, 83, 156, 0.75)), url(/task-bg3.jpg);
+        }
+        html {
+            height: 100vh;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body class="bg">
+
+    <div class="container-fluid mb-0 pb-0 p-0 m-0">
+        <header>
+            <div
+                class="d-flex px-5 mt-3 mb-4 pb-3 justify-content-between align-items-center border-3 border-bottom border-primary">
+                <div class="logo shadow">
+                    <a href="#" class="navbar-brand">Task<span class="fw-bold text-danger">Done</span></a>
+                </div>
+                <div>
+                    <a href="./hom.html"> <button
+                            class="btn btn-sm btn-outline-info rounded-pill px-4 py-2 fs-5">Home</button></a>
+                </div>
+            </div>
+        </header>
+        <div class="container bg shadow-lg align-items-center w-50 p-5  border border-5 border-primary bg-secondary"
+            style="border-radius:30px;">
+            <form action="" methode="post" id="my-form">
+                <div class="row mt-4">
+                    <div class="col">
+                        <input type="email" class="form-control rounded-pill" placeholder="example@gmail.com"
+                            aria-label="mail" name="email">
+                    </div>
+                </div>
+                <div class="row  mt-5">
+                    <div class="col">
+                        <input type="password" class="form-control rounded-pill" placeholder="Enter Password . . ."
+                            aria-label="password" name="password">
+                    </div>
+                </div>
+                <div class="row  mt-5 ">
+                    <div class="col d-flex flex-column align-items-center">
+                        <input type="button" onclick="login()" value="Log In" class="btn btn-info rounded-pill  px-5 py-2" name="log_in">
+                        <p class="fw-bold disable mt-5" style="color: white;">OR</p>
+                    </div>
+                </div>
+                <div class="row  mt-2">
+                    <p class="text-primary mb-2 fw-medium">Do you want to create a new accout ? </p>
+                    <div class="col d-flex flex-column align-items-center">
+                        <a href="signup.html" class="btn btn-info rounded-pill  px-5 py-2" id="signup_btn">Sign Up</a>
+                    </div>
+                    <div class="col d-flex flex-column align-items-center">
+                        <a href="dashboard.php" class="btn btn-info rounded-pill  px-5 py-2" id="signup_btn">Dashboard</a>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        <footer class="bg-dark text-info p-1 text-align-center mt-5">
+            <div class="row p-4">
+                <p>All rights are reserved by @ taskDon.org</p>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+  
+    function login() {
+        const form = document.querySelector('form'); // Select the form element
+
+        // Create a FormData object from the form
+        const formData = new FormData(form);
+
+        // Check if any required fields are empty (you can add more checks as needed)
+        if (!formData.get('email') || !formData.get('password')) {
+            alert("Please fill all required fields correctly");
+            return;
+        }
+
+        if (confirm("Do you want to login ?")) {
+            formData.append('request', 'log_in');
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    alert(" You Are Welcome Back !");
+                    return;
+                }
+            }
+
+            xhttp.open("POST", "serverDB_logics.php");
+            xhttp.send(formData);
+        }
+    }
+</script>
+</html>
